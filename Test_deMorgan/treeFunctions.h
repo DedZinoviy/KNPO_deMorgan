@@ -9,9 +9,9 @@
  * \brief treeComparison copmpares two QDomNode trees.
  * \param firstTree - first tree for comparison.
  * \param secondTree - second tree for comparison.
- * \return sucсess of operation: 1 if success, 0 if failure.
+ * \return sucсess of operation: true if success, false if failure.
  */
-int treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
+bool treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
 
 /*!
  * \brief treeToList decomposes the tree into a list by DFS.
