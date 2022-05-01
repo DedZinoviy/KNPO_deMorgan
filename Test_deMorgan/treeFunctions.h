@@ -2,6 +2,7 @@
 #define TREEFUNCTIONS_H
 #include <QDomNode>
 #include <QList>
+#include <QDomDocument>
 
 
 /*!
