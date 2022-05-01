@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    Test_deMorgan \
+    Test_makeDeMorganExpressionOfNegations \
     deMorgan
