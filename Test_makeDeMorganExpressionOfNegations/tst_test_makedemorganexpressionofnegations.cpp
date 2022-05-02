@@ -61,6 +61,22 @@ void treeToList(const QDomNode & tree, QList <QDomNode> &treeList)
     }
 }
 
+QDomNode getFirstNode(QString inputFileName)
+{
+    // Получить имя xml файла, в котором требуется найти первый узел
+    QDomDocument document(inputFileName);
+    QFile inputFile(inputFileName);
+
+    // Открыть указанный файл для работы с ним
+    inputFile.open(QIODevice::ReadOnly);
+    document.setContent(&inputFile);
+    inputFile.close();
+
+    // Получить первый узел дерева разбора.
+    QDomElement docObject = document.documentElement();
+    return docObject;
+}
+
 void test_makeDeMorganExpressionOfNegations::test_case1()
 {
 

@@ -34,4 +34,11 @@ bool treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
 */
 void treeToList(const QDomNode & tree, QList <QDomNode> &treeList);
 
+/*!
+ * \brief getFirstNode returns the first root node of the tree from the specified xml file.
+ * \param inputFileName path to the file.
+ * \return first node of tree.
+ */
+QDomNode getFirstNode(QString inputFileName);
+
 #endif // TEST_MAKEDEMORGANEXPRESSIONOFNEGATIONS_H
