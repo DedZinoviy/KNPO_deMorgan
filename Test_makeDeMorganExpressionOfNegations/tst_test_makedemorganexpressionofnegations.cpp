@@ -12,6 +12,7 @@ test_makeDeMorganExpressionOfNegations::~test_makeDeMorganExpressionOfNegations(
 
 bool treeComparison(const QDomNode &firstTree, const QDomNode &secondTree)
 {
+
     QList <QDomNode> firstTreeList;
     QList <QDomNode> secondTreeList;
     treeToList(firstTree, firstTreeList); // Преобразовать первое дерево в список узлов.
@@ -66,7 +67,6 @@ QDomNode getFirstNode(QString inputFileName)
     // Получить имя xml файла, в котором требуется найти первый узел
     QDomDocument document(inputFileName);
     QFile inputFile(inputFileName);
-
     // Открыть указанный файл для работы с ним
     inputFile.open(QIODevice::ReadOnly);
     document.setContent(&inputFile);
@@ -74,12 +74,89 @@ QDomNode getFirstNode(QString inputFileName)
 
     // Получить первый узел дерева разбора.
     QDomElement docObject = document.documentElement();
-    return docObject;
+    QDomNode docNode = docObject.firstChild();
+    return docNode;
 }
 
-void test_makeDeMorganExpressionOfNegations::test_case1()
+void test_makeDeMorganExpressionOfNegations::makeDisjunctionOfNegations()
 {
+    QDomDocument doc("");
+    QDomElement A = doc.createElement("variable");
+    A.appendChild(doc.createTextNode("A"));
+    QDomElement B = doc.createElement("variable");
+    B.appendChild(doc.createTextNode("B"));
+    QDomNode result = makeDeMorganExpressionOfNegations(A, B, FIRST);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test1_etalon.xml");
+    bool comp = treeComparison(result, etalon);
+    QCOMPARE(comp, true);
+}
 
+void test_makeDeMorganExpressionOfNegations::makeConjunctionOfNegations()
+{
+    QDomDocument doc("");
+    QDomElement A = doc.createElement("variable");
+    A.appendChild(doc.createTextNode("A"));
+    QDomElement B = doc.createElement("variable");
+    B.appendChild(doc.createTextNode("B"));
+    QDomNode result = makeDeMorganExpressionOfNegations(A, B, SECOND);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test2_etalon.xml");
+    bool comp = treeComparison(result, etalon);
+    QCOMPARE(comp, true);
+}
+
+void test_makeDeMorganExpressionOfNegations::makeDisjunctionOfNegationsWithComplexExpressions()
+{
+    QDomDocument doc("");
+    QDomElement disjunction = doc.createElement("operation");
+    disjunction.setAttribute("type", "||");
+    QDomElement A = doc.createElement("variable");
+    A.appendChild(doc.createTextNode("A"));
+    QDomElement B = doc.createElement("variable");
+    B.appendChild(doc.createTextNode("B"));
+    disjunction.appendChild(A);
+    disjunction.appendChild(B);
+
+    QDomElement conjunction = doc.createElement("operation");
+    conjunction.setAttribute("type", "&&");
+    QDomElement C = doc.createElement("variable");
+    A.appendChild(doc.createTextNode("C"));
+    QDomElement D = doc.createElement("variable");
+    B.appendChild(doc.createTextNode("D"));
+    conjunction.appendChild(C);
+    conjunction.appendChild(D);
+
+    QDomNode result = makeDeMorganExpressionOfNegations(disjunction, conjunction, FIRST);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test3_etalon.xml");
+    bool comp = treeComparison(result, etalon);
+    QCOMPARE(comp, true);
+
+}
+
+void test_makeDeMorganExpressionOfNegations::makeConjunctionOfNegationsWithComplexExpressions()
+{
+    QDomDocument doc("");
+    QDomElement disjunction = doc.createElement("operation");
+    disjunction.setAttribute("type", "||");
+    QDomElement A = doc.createElement("variable");
+    A.appendChild(doc.createTextNode("A"));
+    QDomElement B = doc.createElement("variable");
+    B.appendChild(doc.createTextNode("B"));
+    disjunction.appendChild(A);
+    disjunction.appendChild(B);
+
+    QDomElement conjunction = doc.createElement("operation");
+    conjunction.setAttribute("type", "&&");
+    QDomElement C = doc.createElement("variable");
+    A.appendChild(doc.createTextNode("C"));
+    QDomElement D = doc.createElement("variable");
+    B.appendChild(doc.createTextNode("D"));
+    conjunction.appendChild(C);
+    conjunction.appendChild(D);
+
+    QDomNode result = makeDeMorganExpressionOfNegations(disjunction, conjunction, SECOND);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test4_etalon.xml");
+    bool comp = treeComparison(result, etalon);
+    QCOMPARE(comp, true);
 }
 
 QTEST_APPLESS_MAIN(test_makeDeMorganExpressionOfNegations)

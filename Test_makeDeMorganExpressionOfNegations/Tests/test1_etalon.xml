@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <operation type = "||">
+        <operation type = "!">
+            <variable>A</variable> 
+        </operation>
+        <operation type = "!">
+            <variable>B</variable>
+        </operation>
+    </operation>
+</root>

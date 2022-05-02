@@ -3,7 +3,9 @@
 
 QDomNode makeDeMorganExpressionOfNegations(QDomNode &firstChild, QDomNode &secondChild, DeMorganLaws type)
 {
-
+    QDomDocument doc("");
+    QDomNode A = doc.createElement("operation");
+    return A;
 }
 
 void makeConjunctiveDisjunctiveForm(QDomNode & node)

@@ -2,6 +2,7 @@
 #define TEST_MAKEDEMORGANEXPRESSIONOFNEGATIONS_H
 #include <QtTest>
 #include <QDomDocument>
+#include "../deMorgan/main.h"
 
 // add necessary includes here
 
@@ -14,8 +15,10 @@ public:
     ~test_makeDeMorganExpressionOfNegations();
 
 private slots:
-    void test_case1();
-
+    void makeDisjunctionOfNegations();
+    void makeConjunctionOfNegations();
+    void makeDisjunctionOfNegationsWithComplexExpressions();
+    void makeConjunctionOfNegationsWithComplexExpressions();
 };
 
 
