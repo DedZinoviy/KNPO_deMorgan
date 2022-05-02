@@ -10,7 +10,7 @@ test_makeDeMorganExpressionOfNegations::~test_makeDeMorganExpressionOfNegations(
 
 }
 
-bool treeComparison(const QDomNode &firstTree, const QDomNode &secondTree)
+bool test_makeDeMorganExpressionOfNegations::treeComparison(const QDomNode &firstTree, const QDomNode &secondTree)
 {
 
     QList <QDomNode> firstTreeList;
@@ -48,7 +48,7 @@ bool treeComparison(const QDomNode &firstTree, const QDomNode &secondTree)
     return isSameTree;
 }
 
-void treeToList(const QDomNode & tree, QList <QDomNode> &treeList)
+void test_makeDeMorganExpressionOfNegations::treeToList(const QDomNode & tree, QList <QDomNode> &treeList)
 {
     treeList.append(tree); // Добавить текущий узел в список.
     QDomNodeList childList = tree.childNodes(); // Получить дочерние узлы от текущего.
@@ -62,7 +62,7 @@ void treeToList(const QDomNode & tree, QList <QDomNode> &treeList)
     }
 }
 
-QDomNode getFirstNode(QString inputFileName)
+QDomNode test_makeDeMorganExpressionOfNegations::getFirstNode(QString inputFileName)
 {
     // Получить имя xml файла, в котором требуется найти первый узел
     QDomDocument document(inputFileName);
