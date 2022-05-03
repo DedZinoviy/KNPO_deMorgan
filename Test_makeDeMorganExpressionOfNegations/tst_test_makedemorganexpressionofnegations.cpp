@@ -10,7 +10,7 @@ test_makeDeMorganExpressionOfNegations::~test_makeDeMorganExpressionOfNegations(
 
 }
 
-bool test_makeDeMorganExpressionOfNegations::treeComparison(const QDomNode &firstTree, const QDomNode &secondTree)
+void test_makeDeMorganExpressionOfNegations::treeComparison(const QDomNode &firstTree, const QDomNode &secondTree)
 {
 
     QList <QDomNode> firstTreeList;
@@ -18,34 +18,30 @@ bool test_makeDeMorganExpressionOfNegations::treeComparison(const QDomNode &firs
     treeToList(firstTree, firstTreeList); // Преобразовать первое дерево в список узлов.
     treeToList(secondTree, secondTreeList); // Преобразовать второе дерево в список узлов.
 
-    bool isSameTree = true; // Считать, что изначально деревья одинаковые.
     int firstListLen = firstTreeList.size();
     int secListLen = secondTreeList.size();
 
+
     for (int i = 0; i < firstListLen && i < secListLen; i++) // Для каждого элемента первого и второго списков...
     {
+
         QString firstTreeNodeTag = firstTreeList[i].toElement().tagName();
         QString secTreeNodeTag = secondTreeList[i].toElement().tagName();
-        if (firstTreeNodeTag != secTreeNodeTag) // Считать узлы различными, если они имеют различные тэги, не являющийся тэгом операции.
-        {
-            isSameTree = false;
-            return isSameTree;
-        }
-        else // Иначе...
-        {
+
+
+        QCOMPARE(firstTreeNodeTag, secTreeNodeTag); // Сравнить имена тэговы
+
             if (firstTreeNodeTag == "operation" ) // Проверить узлы на одинаковость значений аттрибута, если они имеют тэг операции.
             {
                 QString firstNodeValue = firstTreeList[i].toElement().attributeNode("type").value();
                 QString secNodeValue = secondTreeList[i].toElement().attributeNode("type").value();
+
                 if(firstNodeValue != secNodeValue) // Считать узлы операции различными, если значения их аттрибутов не совпадают.
                 {
-                    isSameTree = false;
-                    return isSameTree;
+                    QCOMPARE(firstNodeValue, secNodeValue);
                 }
             }
-        }
     }
-    return isSameTree;
 }
 
 void test_makeDeMorganExpressionOfNegations::treeToList(const QDomNode & tree, QList <QDomNode> &treeList)
@@ -87,8 +83,7 @@ void test_makeDeMorganExpressionOfNegations::makeDisjunctionOfNegations()
     B.appendChild(doc.createTextNode("B"));
     QDomNode result = makeDeMorganExpressionOfNegations(A, B, FIRST);
     QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test1_etalon.xml");
-    bool comp = treeComparison(result, etalon);
-    QCOMPARE(comp, true);
+    treeComparison(result, etalon);
 }
 
 void test_makeDeMorganExpressionOfNegations::makeConjunctionOfNegations()
@@ -100,8 +95,7 @@ void test_makeDeMorganExpressionOfNegations::makeConjunctionOfNegations()
     B.appendChild(doc.createTextNode("B"));
     QDomNode result = makeDeMorganExpressionOfNegations(A, B, SECOND);
     QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test2_etalon.xml");
-    bool comp = treeComparison(result, etalon);
-    QCOMPARE(comp, true);
+    treeComparison(result, etalon);
 }
 
 void test_makeDeMorganExpressionOfNegations::makeDisjunctionOfNegationsWithComplexExpressions()
@@ -127,9 +121,7 @@ void test_makeDeMorganExpressionOfNegations::makeDisjunctionOfNegationsWithCompl
 
     QDomNode result = makeDeMorganExpressionOfNegations(disjunction, conjunction, FIRST);
     QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test3_etalon.xml");
-    bool comp = treeComparison(result, etalon);
-    QCOMPARE(comp, true);
-
+    treeComparison(result, etalon);
 }
 
 void test_makeDeMorganExpressionOfNegations::makeConjunctionOfNegationsWithComplexExpressions()
@@ -155,8 +147,7 @@ void test_makeDeMorganExpressionOfNegations::makeConjunctionOfNegationsWithCompl
 
     QDomNode result = makeDeMorganExpressionOfNegations(disjunction, conjunction, SECOND);
     QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeDeMorganExpressionOfNegations/Tests/test4_etalon.xml");
-    bool comp = treeComparison(result, etalon);
-    QCOMPARE(comp, true);
+    treeComparison(result, etalon);
 }
 
 QTEST_APPLESS_MAIN(test_makeDeMorganExpressionOfNegations)

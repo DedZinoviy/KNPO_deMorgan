@@ -21,7 +21,7 @@ private:
     * \param secondTree - second tree for comparison.
     * \return sucсess of operation: true if success, false if failure.
     */
-    bool treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
+    void treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
 
     /*!
     * \brief treeToList decomposes the tree into a list by DFS.
