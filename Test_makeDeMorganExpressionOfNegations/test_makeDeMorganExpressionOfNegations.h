@@ -19,7 +19,6 @@ private:
     * \brief treeComparison copmpares two QDomNode trees.
     * \param firstTree - first tree for comparison.
     * \param secondTree - second tree for comparison.
-    * \return sucсess of operation: true if success, false if failure.
     */
     void treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
 
