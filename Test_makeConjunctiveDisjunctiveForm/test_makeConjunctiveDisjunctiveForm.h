@@ -29,6 +29,13 @@ private:
     */
     void treeToList(const QDomNode & tree, QList <QDomNode> &treeList);
 
+    /*!
+    * \brief treeComparison copmpares two QDomNode trees.
+    * \param firstTree - first tree for comparison.
+    * \param secondTree - second tree for comparison.
+    */
+    void treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
+
 private slots:
     void test_case1();
 
