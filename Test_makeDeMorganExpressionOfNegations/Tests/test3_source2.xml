@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <operation type = "&amp;&amp;">
+        <variable>C</variable> 
+        <variable>D</variable>
+    </operation>
+</root>
