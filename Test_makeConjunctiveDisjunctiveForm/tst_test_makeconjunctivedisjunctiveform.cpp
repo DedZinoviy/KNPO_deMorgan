@@ -26,6 +26,16 @@ QDomNode Test_makeConjunctiveDisjunctiveForm::getFirstNode(QString inputFileName
     return docNode;
 }
 
+void Test_makeConjunctiveDisjunctiveForm::treeToList(const QDomNode & tree, QList <QDomNode> &treeList)
+{
+    treeList.append(tree); // Добавить текущий узел в список.
+    QDomNodeList childList = tree.childNodes(); // Получить дочерние узлы от текущего.
+    for(int i = 0; i < childList.length(); i++) // Для каждого дочернего узла...
+    {
+        treeToList(childList.item(i), treeList); // декомпозировать поддерево в список.
+    }
+}
+
 void Test_makeConjunctiveDisjunctiveForm::test_case1()
 {
 

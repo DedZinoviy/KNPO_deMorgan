@@ -22,6 +22,13 @@ private:
      */
     QDomNode getFirstNode(QString inputFileName);
 
+    /*!
+    * \brief treeToList decomposes the tree into a list by DFS.
+    * \param tree - tree for decomposing.
+    * \param treeList - result list of nodes.
+    */
+    void treeToList(const QDomNode & tree, QList <QDomNode> &treeList);
+
 private slots:
     void test_case1();
 
