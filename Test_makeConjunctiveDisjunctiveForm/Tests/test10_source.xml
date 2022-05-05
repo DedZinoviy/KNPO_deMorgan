@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expression>
+    <operation type="||">
+        <operation type="NAND">
+            <variable>A</variable>
+            <variable>C</variable>
+        </operation>
+        <operation type="NOR">
+            <variable>B</variable>
+            <variable>D</variable>
+        </operation>
+    </operation>
+</expression>

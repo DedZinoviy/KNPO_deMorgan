@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expression>
+    <operation type="NAND">
+        <variable>A</variable>
+        <variable>B</variable>
+    </operation>
+</expression>

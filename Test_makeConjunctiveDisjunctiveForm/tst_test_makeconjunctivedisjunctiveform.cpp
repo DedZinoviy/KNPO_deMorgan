@@ -71,9 +71,84 @@ void Test_makeConjunctiveDisjunctiveForm::treeComparison(const QDomNode &firstTr
 }
 
 
-void Test_makeConjunctiveDisjunctiveForm::test_case1()
+void Test_makeConjunctiveDisjunctiveForm::emptyTree()
 {
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test1_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test1_etalon.xml");
+    treeComparison(source, etalon);
+}
 
+void Test_makeConjunctiveDisjunctiveForm::onlyExpressionTag()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test2_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test2_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::onlyOneConjunction()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test3_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test3_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::combinationOfConjunctionDisjunctionAndNegation()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test4_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test4_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::onlyNandOperator()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test5_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test5_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::onlyNorOperator()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test6_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test6_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::onlyXorOperator()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test7_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test7_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::combinationOfNorDisjunctionNegationAndConjunction()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test8_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test8_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::norNandCombinationInRow()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test9_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test9_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void Test_makeConjunctiveDisjunctiveForm::norNandCombinationInDifferentBranches()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test10_source.xml");
+    makeConjunctiveDisjunctiveForm(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test10_etalon.xml");
+    treeComparison(source, etalon);
 }
 
 QTEST_APPLESS_MAIN(Test_makeConjunctiveDisjunctiveForm)

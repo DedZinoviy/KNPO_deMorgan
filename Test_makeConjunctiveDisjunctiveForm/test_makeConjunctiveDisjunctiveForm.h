@@ -37,7 +37,16 @@ private:
     void treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
 
 private slots:
-    void test_case1();
+    void emptyTree();
+    void onlyExpressionTag();
+    void onlyOneConjunction();
+    void combinationOfConjunctionDisjunctionAndNegation();
+    void onlyNandOperator();
+    void onlyNorOperator();
+    void onlyXorOperator();
+    void combinationOfNorDisjunctionNegationAndConjunction();
+    void norNandCombinationInRow();
+    void norNandCombinationInDifferentBranches();
 
 };
 
