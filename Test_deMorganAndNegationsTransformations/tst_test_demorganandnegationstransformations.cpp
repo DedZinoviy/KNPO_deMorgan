@@ -25,6 +25,15 @@ QDomNode test_deMorganAndNegationsTransformations::getFirstNode(QString inputFil
     return docNode;
 }
 
+void test_deMorganAndNegationsTransformations::treeToList(const QDomNode & tree, QList <QDomNode> &treeList)
+{
+    treeList.append(tree); // Добавить текущий узел в список.
+    QDomNodeList childList = tree.childNodes(); // Получить дочерние узлы от текущего.
+    for(int i = 0; i < childList.length(); i++) // Для каждого дочернего узла...
+    {
+        treeToList(childList.item(i), treeList); // декомпозировать поддерево в список.
+    }
+}
 void test_deMorganAndNegationsTransformations::test_case1()
 {
 
