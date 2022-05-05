@@ -21,8 +21,7 @@ QDomNode Test_makeConjunctiveDisjunctiveForm::getFirstNode(QString inputFileName
     inputFile.close();
 
     // Получить первый узел дерева разбора.
-    QDomElement docObject = document.documentElement();
-    QDomNode docNode = docObject.firstChild();
+    QDomElement docNode = document.documentElement();
     return docNode;
 }
 
