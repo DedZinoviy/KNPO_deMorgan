@@ -33,8 +33,31 @@ private:
     * \param secondTree - second tree for comparison.
     */
     void treeComparison(const QDomNode &firstTree, const QDomNode &secondTree);
+
 private slots:
-    void test_case1();
+    void emptyTree();
+    void onlyExpressionTag();
+    void onlyOneNegation();
+    void doubleNegation();
+    void negationOfDoubleNegation();
+    void twoDoubleNegationsAtRow();
+    void twoNegationsInDifferentBranches();
+    void noSuitableSituations();
+    void oneFirstDeMorganSituation();
+    void oneSecondDeMorganSituation();
+    void twoFirstDeMorganSituationsInRow();
+    void twoFirstDemorganSituationsInDifferentBranches();
+    void twoSecondDeMorganSituationsInRow();
+    void twoSecondDeMorganSituationsInDifferentBranches();
+    void combinationOfDoubleNegationAndFirstDeMorganInRow();
+    void combinationOfDoubleNegationAndSecondDeMorganInRow();
+    void combinationOfDoubleNegationAndFirstDeMorganInDifferentBranches();
+    void combinationOfDoubleNegationAndSecondDeMorganInDifferentBranches();
+    void combinationOfSecondDeMorganAndFirstDeMorganInRow();
+    void combinationOfSecondDeMorganAndSecondDeMorganInDifferentBranches();
+    void negationOfFirstDeMorgan();
+    void negationOfSecondDeMorgan();
+    void complexTest();
 
 };
 #endif // TEST_DEMORGANANDNEGATIONSTRANSFORMATIONS_H

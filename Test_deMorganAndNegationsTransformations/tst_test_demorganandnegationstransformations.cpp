@@ -46,10 +46,8 @@ void test_deMorganAndNegationsTransformations::treeComparison(const QDomNode &fi
     int firstListLen = firstTreeList.size();
     int secListLen = secondTreeList.size();
 
-
     for (int i = 0; i < firstListLen && i < secListLen; i++) // Для каждого элемента первого и второго списков...
     {
-
         QString firstTreeNodeTag = firstTreeList[i].toElement().tagName();
         QString secTreeNodeTag = secondTreeList[i].toElement().tagName();
 
@@ -68,9 +66,191 @@ void test_deMorganAndNegationsTransformations::treeComparison(const QDomNode &fi
             }
     }
 }
-void test_deMorganAndNegationsTransformations::test_case1()
-{
 
+void test_deMorganAndNegationsTransformations::emptyTree()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test1_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test1_etalon.xml");
+    treeComparison(source, etalon);
+
+}
+
+void test_deMorganAndNegationsTransformations::onlyExpressionTag()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test2_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test2_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::onlyOneNegation()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test3_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test3_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::doubleNegation()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test4_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test4_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::negationOfDoubleNegation()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test5_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test5_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::twoDoubleNegationsAtRow()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test6_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test6_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::twoNegationsInDifferentBranches()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test7_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test7_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::noSuitableSituations()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test8_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test8_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::oneFirstDeMorganSituation()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test9_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test9_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::oneSecondDeMorganSituation()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test10_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test10_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::twoFirstDeMorganSituationsInRow()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test11_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test11_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::twoFirstDemorganSituationsInDifferentBranches()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test12_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test12_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::twoSecondDeMorganSituationsInRow()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test13_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test13_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::twoSecondDeMorganSituationsInDifferentBranches()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test14_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test14_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+
+void test_deMorganAndNegationsTransformations::combinationOfDoubleNegationAndFirstDeMorganInRow()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test15_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test15_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::combinationOfDoubleNegationAndSecondDeMorganInRow()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test16_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test16_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::combinationOfDoubleNegationAndFirstDeMorganInDifferentBranches()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test17_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test17_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::combinationOfDoubleNegationAndSecondDeMorganInDifferentBranches()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test18_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test18_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::combinationOfSecondDeMorganAndFirstDeMorganInRow()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test19_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test19_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::combinationOfSecondDeMorganAndSecondDeMorganInDifferentBranches()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test20_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test20_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::negationOfFirstDeMorgan()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test21_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test21_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::negationOfSecondDeMorgan()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test22_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test22_etalon.xml");
+    treeComparison(source, etalon);
+}
+
+void test_deMorganAndNegationsTransformations::complexTest()
+{
+    QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test23_source.xml");
+    deMorganAndNegationTransformations(source);
+    QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_deMorganAndNegationsTransformations/Tests/test23_etalon.xml");
+    treeComparison(source, etalon);
 }
 
 QTEST_APPLESS_MAIN(test_deMorganAndNegationsTransformations)

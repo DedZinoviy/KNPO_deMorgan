@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expression>
+    <operation type="||">
+        <operation type="&amp;&amp;">
+            <operation type="!">
+                <variable>A</variable>
+            </operation>
+            <operation type="!">
+                <variable>B</variable>
+            </operation>
+        </operation>
+        <operation type="&amp;&amp;">
+            <operation type="!">
+                <variable>C</variable>
+            </operation>
+            <operation type="!">
+                <variable>D</variable>
+            </operation>
+        </operation>
+    </operation>
+</expression>

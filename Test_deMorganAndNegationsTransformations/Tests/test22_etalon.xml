@@ -1,0 +1,6 @@
+<expression>
+    <operation type="||">
+        <variable>A</variable>
+        <variable>B</variable>
+    </operation>
+</expression>
