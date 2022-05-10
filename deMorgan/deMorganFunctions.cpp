@@ -139,7 +139,84 @@ void makeConjunctiveDisjunctiveForm(QDomNode& node)
 
 void deMorganAndNegationTransformations(QDomNode& node)
 {
+    QDomNode nextNode;
+    if (node.toElement().tagName() == "operation") // Если рассмтриваемый узел является узлом операции...
+    {
+        if (node.toElement().attributeNode("type").value() == "!") // Проверить следующий узел на возможность применения законов, если рассматриваемый узел является отрицанием
+        {
+            nextNode = node.firstChild();
+            if (nextNode.toElement().tagName() == "operation") // Проверить тип операции, если следующий узел является узлом операции.
+            {
+                QString nextOperationType = nextNode.toElement().attributeNode("type").value(); // Узнать тип операции
 
+                if (nextOperationType == "!") // Если следующий узел является отрицанием, то удалить двойное отрицание
+                {
+                    QDomNode previousNode = node.parentNode(); // Получить родительский узел первого отрицания
+                    QDomNode nextNodeAfter = nextNode.firstChild(); // Получить дочерний узел второго отрицания
+                    previousNode.replaceChild(nextNodeAfter, node); // Склеить родительский узел первого отрицания и дочерний узел втрого отрицания
+                    deMorganAndNegationTransformations(nextNodeAfter); // Перейти к следующему узлу
+                }
+
+                else if (nextOperationType == "&&") // ИначеЕсли следующий узел является конъюнкцией...
+                {
+                    // Расрксрыть скобки по первому закону де Моргана.
+                    QDomNode previousNode = node.parentNode();
+                    QDomNode firstNextNode = nextNode.firstChild();
+                    QDomNode secNextNode = nextNode.lastChild();
+                    QDomNode disjunction = makeDeMorganExpressionOfNegations(firstNextNode, secNextNode, FIRST);
+
+                    previousNode.replaceChild(disjunction, node);
+
+                    QDomNode firstNegation = disjunction.firstChild();
+                    QDomNode secNegation = disjunction.lastChild();
+
+                    deMorganAndNegationTransformations(firstNegation);
+                    deMorganAndNegationTransformations(secNegation);
+                }
+
+                else if (nextOperationType == "||") // ИначеЕсли следующий узел является дизъюнкцией...
+                {
+                    // Расрксрыть скобки по второму закону де Моргана.
+                    QDomNode previousNode = node.parentNode();
+                    QDomNode firstNextNode = nextNode.firstChild();
+                    QDomNode secNextNode = nextNode.lastChild();
+                    QDomNode conjunction = makeDeMorganExpressionOfNegations(firstNextNode, secNextNode, SECOND);
+
+                    previousNode.replaceChild(conjunction, node);
+
+                    QDomNode firstNegation = conjunction.firstChild();
+                    QDomNode secNegation = conjunction.lastChild();
+
+                    deMorganAndNegationTransformations(firstNegation);
+                    deMorganAndNegationTransformations(secNegation);
+                }
+
+                else // Иначе...
+                {
+                    nextNode = node.firstChild(); //Получить первый дочерний узел операции
+                    deMorganAndNegationTransformations(nextNode); // Перейти к первому дочернему узлу
+                    nextNode = node.lastChild(); // Получить второй дочерний узел операции
+                    deMorganAndNegationTransformations(nextNode); // Перейти ко второму дочернему узлу
+                }
+            }
+        }
+        else // Иначе...
+        {
+            // Перейти к первому дочернему узлу
+           QDomNode firstNextNode = node.firstChild();
+           deMorganAndNegationTransformations(firstNextNode);
+
+           // Перейти ко второму дочернему узлу
+           QDomNode secNextNode = node.lastChild();
+           deMorganAndNegationTransformations(secNextNode);
+        }
+    }
+    else if (node.toElement().tagName() == "expression") // ИначеЕсли тэгявляется тэгом выражения...
+    {
+        // ... Перейти к дочернему узлу
+        nextNode = node.firstChild();
+        deMorganAndNegationTransformations(nextNode);
+    }
 }
 
 int errorHandler(int errorCode)
