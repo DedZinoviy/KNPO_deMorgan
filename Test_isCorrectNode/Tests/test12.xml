@@ -1,0 +1,5 @@
+<operation type="NOR">
+    <variable>A</variable>
+    <variable>B</variable>
+    <variable>C</variable>
+</operation>
