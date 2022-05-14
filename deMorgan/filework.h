@@ -2,6 +2,8 @@
 #define FILEWORK_H
 #include <QDomDocument>
 #include <QFile>
+#include <QFileInfo>
+#include <QDir>
 #include <QTextStream>
 
 /*!
@@ -45,6 +47,13 @@ public:
      * \return success of operation.
      */
     bool isXMLFile(QString &name);
+
+    /*!
+     * \brief isCorrectOutput checks the output file name for correctness.
+     * \param name - file name with its path.
+     * \return success of operation.
+     */
+    bool isCorrectOutput(QString & name);
 private:
     QString inputFileName; ///< string path to input file.
     QString outputFileName; ///< string path to output file.

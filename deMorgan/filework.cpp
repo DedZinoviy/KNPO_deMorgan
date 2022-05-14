@@ -11,3 +11,13 @@ bool FileWork::isXMLFile(QString &name)
         throw 3;
     return true;
 }
+
+bool FileWork::isCorrectOutput(QString & name)
+{
+    QFileInfo outputFile(name);
+    if (isXMLFile(name)) // Если указанный файл все же является .xml
+    {
+        if (!outputFile.dir().exists()) throw 2; // Сообщить,если указанного файла не существует
+    }
+    return true;
+}
