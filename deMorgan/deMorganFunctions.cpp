@@ -224,7 +224,47 @@ int errorHandler(int errorCode)
     return 0;
 }
 
-int isCorrectNode(const QDomNode &node)
+void isCorrectNode(const QDomNode &node)
 {
-    return 0;
+    QString tagName = node.toElement().tagName();
+    // Проверить на ошибки узел expression
+    if (tagName == "expression")
+    {
+        if (node.childNodes().length() < 1) throw 4; // Сообщить об ошибке, если в узле expression нет дочерних узлов
+        if (node.childNodes().length() > 1) throw 6; // Сообщить об ошибке, если в узле expression более одного дочернего узла
+        if (!node.parentNode().isNull()) throw 7; // Сообщить об ошибке, если узел  expression не является корневым
+        if (node.toElement().elementsByTagName("expression").length() > 0) throw 8; //Сообщить об ошибке, если присутсвует более двух деревьев разбора
+    }
+
+    else if (tagName == "operation")
+    {
+        if (node.toElement().attributeNode("type").isNull()) throw 13;// Сообщить об ошибке, если узел операции не имееет типа
+        QString type = node.toElement().attributeNode("type").value();
+
+        // Проверить на ошибки узлы бинарных операций
+        if (type == "&&" || type == "||" || type == "NOR" || type == "XOR" || type == "NAND")
+        {
+            if (node.childNodes().length() < 2) throw 10; // Сообщить об ошибке, если бинарная операция имеет недостаток операндов
+            if (node.childNodes().length() > 2) throw 9; // Сообщить об ошибке, если бинарная операция имеет более двух операндов
+        }
+
+        // Проверить на уошибк узел отрицания
+        else if (type == "!")
+        {
+            if (node.childNodes().length() > 1) throw 7; // Сообщить об ошибке, если узел отрицания содержит более одного дочернего узла
+            if (node.childNodes().length() < 1) throw 11; // Сообщить об ошибке, если узел отрицания не содержит дочерних узлов
+        }
+        else throw 14; // Иначе сообщить, что перация имеет неизвестный тип.
+    }
+
+    else if (tagName == "variable")
+    {
+        // Проверить на ошибки узел переменой
+        if (node.childNodes().length() > 1) throw 12; // Сообщить об ошибке, если узел переменной содержит более одного дочернего узла
+        if (!node.firstChild().isText()) throw 12; // Сообщить об ошибке, если узел переменной содержит не текстовый дченрий узел
+    }
+    else if (tagName != "expression" && tagName != "operation" && tagName !="variable" && !node.isText()) // Сообщить об ошибке, если дерево содержит тэги, не принадлежащие к допустимым
+    {
+        throw 5;
+    }
 }

@@ -43,6 +43,5 @@ int errorHandler(int errorCode);
 /*!
  * \brief isCorrectNode checks the node for the presence of erroneous situations in it, such as a mismatch in the number of child nodes.
  * \param node - a logical operation node that is checked for errors.
- * \return the presence of an error: 1 if there is an error, 0 if everything is correct.
  */
-int isCorrectNode(const QDomNode &node);
+void isCorrectNode(const QDomNode &node);
