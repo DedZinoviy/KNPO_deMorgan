@@ -38,6 +38,13 @@ public:
      * \return fisrt node from parse tree.
      */
     QDomNode getFirstNode();
+
+    /*!
+     * \brief isXMLFile сhecks whether the specified file is an XML file.
+     * \param name - file name with its path.
+     * \return success of operation.
+     */
+    bool isXMLFile(QString &name);
 private:
     QString inputFileName; ///< string path to input file.
     QString outputFileName; ///< string path to output file.
