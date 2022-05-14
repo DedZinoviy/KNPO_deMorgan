@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QDir>
+#include <iostream>
 #include <QTextStream>
 
 /*!
@@ -54,6 +55,13 @@ public:
      * \return success of operation.
      */
     bool isCorrectOutput(QString & name);
+
+    /*!
+     * \brief isCorrectInput checks the input file name for correctness.
+     * \param name - file name with its path.
+     * \return success of operation.
+     */
+    bool isCorrectInput(QString & name);
 private:
     QString inputFileName; ///< string path to input file.
     QString outputFileName; ///< string path to output file.
