@@ -49,3 +49,13 @@ bool FileWork::setInputFile(QString fileName)
     }
     else return false;
 }
+
+bool FileWork::setOutputFile(QString fileName)
+{
+    if (isCorrectOutput(fileName))
+    {
+        this->outputFileName = fileName;
+        return true;
+    }
+    else return false;
+}
