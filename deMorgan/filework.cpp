@@ -39,3 +39,13 @@ bool FileWork::isCorrectInput(QString & name)
         }
     }
 }
+
+bool FileWork::setInputFile(QString fileName)
+{
+    if (isCorrectInput(fileName))
+    {
+        this->inputFileName = fileName;
+        return true;
+    }
+    else return false;
+}
