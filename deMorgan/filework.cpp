@@ -30,14 +30,13 @@ bool FileWork::isCorrectInput(QString & name)
     if(isXMLFile(name)) // Если указанный файл все же является .xml
     {
         if (!inputFile.open(QIODevice::ReadOnly)) throw 1;//Сообщить, если указанного файла не существует
-
-
         else if (!doc.setContent(&inputFile, true, &error)) //Сообщить, если файл содержит синтаксическую ошибку
         {
             std::cout << error.data() <<std::endl;
             throw 15;
         }
     }
+    return true;
 }
 
 bool FileWork::setInputFile(QString fileName)
