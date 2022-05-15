@@ -2,7 +2,8 @@
 
 FileWork::FileWork()
 {
-
+    this->inputFileName = "";
+    this->outputFileName = "";
 }
 
 bool FileWork::isXMLFile(QString &name)
