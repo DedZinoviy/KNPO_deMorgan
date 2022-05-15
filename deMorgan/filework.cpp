@@ -75,3 +75,21 @@ QDomNode FileWork::getFirstNode()
     QDomElement docObject = document.documentElement();
     return docObject;
 }
+
+bool FileWork::writeXmlFile(QDomNode &tree)
+{
+    // Получить имя xml файла, в который требуется записать дерево
+    QDomDocument document(this->outputFileName);
+    document.appendChild(tree);
+    QFile file(this->outputFileName);
+
+    // Записать дерево в файл, если удалось его открыть
+    if (file.open(QIODevice::WriteOnly))
+    {
+         QTextStream stream(&file);
+         stream << document.toString();
+         file.close();
+         return true;
+    }
+    return false;
+}
