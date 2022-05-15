@@ -59,3 +59,19 @@ bool FileWork::setOutputFile(QString fileName)
     }
     else return false;
 }
+
+QDomNode FileWork::getFirstNode()
+{
+    // Получить имя xml файла, в котором требуется найти первый узел
+    QDomDocument document(this->inputFileName);
+    QFile inputFile(this->inputFileName);
+
+    // Открыть указанный файл для работы с ним
+    inputFile.open(QIODevice::ReadOnly);
+    document.setContent(&inputFile);
+    inputFile.close();
+
+    // Получить первый узел дерева разбора.
+    QDomElement docObject = document.documentElement();
+    return docObject;
+}
