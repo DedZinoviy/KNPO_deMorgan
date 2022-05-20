@@ -221,7 +221,27 @@ void deMorganAndNegationTransformations(QDomNode& node)
 
 int errorHandler(int errorCode)
 {
-    return 0;
+    QMap <int, QString> errors;
+    errors[1] = "Invalid input file specified. The file may not exist.";
+    errors[2] = "Invalid output file specified. The specified location may not exist or may not have write permissions.";
+    errors[3] = "Unsupported format. This file is not an .xml file.";
+    errors[4] = "There is no parse tree in the specified file, or the parse tree is unreadable in it.";
+    errors[5] = "The specified file contains tags that do not belong to valid.";
+    errors[6] = "Root node contains more than one child node.";
+    errors[7] = "The negation operation has no child operand node.";
+    errors[8] = "File contains more than one parse tree.";
+    errors[9] = "Binary operations have more than two operands.";
+    errors[10] = "Binary operations have a lack of operands.";
+    errors[11] = "The negation operation has more than one child node.";
+    errors[12] = "The variable has an invalid child tag.";
+    errors[13] = "Operation tag is missing a type attribute.";
+    errors[14] = "The operation tag is of an invalid type.";
+    errors[15] = "";
+    errors[16] = "Lack of command line arguments.";
+
+    std::cout<<errors[errorCode].data()<<std::endl; // Вывести сообщение в зависимости от полученного кода ошибки.
+    return errorCode;     // Завершить функцию с полученным кодом ошибки.
+
 }
 
 void isCorrectNode(const QDomNode &node)

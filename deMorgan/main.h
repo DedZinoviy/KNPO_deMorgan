@@ -2,6 +2,7 @@
 #define MAIN_H
 #include <QCoreApplication>
 #include <QDomDocument>
+#include <QMap>
 #include "filework.h"
 
 enum DeMorganLaws
