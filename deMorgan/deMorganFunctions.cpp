@@ -39,6 +39,7 @@ void makeConjunctiveDisjunctiveForm(QDomNode& node)
 {
     QDomDocument doc("newForm");
     QDomNode nextNode;
+    isCorrectNode(node); // Проверить узел на корректность
     if (node.toElement().tagName() == "operation") // Если рассматриваемый узел является улом операциии...
     {
         QString operationType = node.toElement().attributeNode("type").value(); // Узнать тип операции
