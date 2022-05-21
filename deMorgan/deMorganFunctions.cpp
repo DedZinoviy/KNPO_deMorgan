@@ -240,7 +240,7 @@ int errorHandler(int errorCode)
     errors[15] = "";
     errors[16] = "Lack of command line arguments.";
 
-    std::cout<<errors[errorCode].data()<<std::endl; // Вывести сообщение в зависимости от полученного кода ошибки.
+    std::cout<<errors[errorCode].toStdString()<<std::endl; // Вывести сообщение в зависимости от полученного кода ошибки.
     return errorCode;     // Завершить функцию с полученным кодом ошибки.
 
 }
