@@ -33,7 +33,7 @@ bool FileWork::isCorrectInput(QString & name)
         if (!inputFile.open(QIODevice::ReadOnly)) throw 1;//Сообщить, если указанного файла не существует
         else if (!doc.setContent(&inputFile, true, &error)) //Сообщить, если файл содержит синтаксическую ошибку
         {
-            std::cout << error.data() <<std::endl;
+            std::cout << error.toStdString() <<std::endl;
             throw 15;
         }
     }
