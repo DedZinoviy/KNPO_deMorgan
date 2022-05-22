@@ -195,19 +195,19 @@ void deMorganAndNegationTransformations(QDomNode& node)
                 else // Иначе...
                 {
                     nextNode = node.firstChild(); //Получить первый дочерний узел операции
-                    deMorganAndNegationTransformations(nextNode); // Перейти к первому дочернему узлу
+                    deMorganAndNegationTransformations(nextNode); // Перейти к первому дочернему узлу рекурсивно
                     nextNode = node.lastChild(); // Получить второй дочерний узел операции
-                    deMorganAndNegationTransformations(nextNode); // Перейти ко второму дочернему узлу
+                    deMorganAndNegationTransformations(nextNode); // Перейти ко второму дочернему узлу рекурсивно
                 }
             }
         }
         else // Иначе...
         {
-            // Перейти к первому дочернему узлу
+            // Перейти к первому дочернему узлу рекурсивно
            QDomNode firstNextNode = node.firstChild();
            deMorganAndNegationTransformations(firstNextNode);
 
-           // Перейти ко второму дочернему узлу
+           // Перейти ко второму дочернему узлу рекурсивно
            QDomNode secNextNode = node.lastChild();
            deMorganAndNegationTransformations(secNextNode);
         }
@@ -247,8 +247,8 @@ int errorHandler(int errorCode)
 
 void isCorrectNode(const QDomNode &node)
 {
-    QString tagName = node.toElement().tagName();
-    // Проверить на ошибки узел expression
+    QString tagName = node.toElement().tagName(); // Получить тип узла
+    // Проверить на ошибки узел, если его тэг - expression
     if (tagName == "expression")
     {
         if (node.childNodes().length() < 1) throw 4; // Сообщить об ошибке, если в узле expression нет дочерних узлов
@@ -257,7 +257,7 @@ void isCorrectNode(const QDomNode &node)
         if (node.toElement().elementsByTagName("expression").length() > 0) throw 8; //Сообщить об ошибке, если присутсвует более двух деревьев разбора
     }
 
-    else if (tagName == "operation")
+    else if (tagName == "operation") // Проверить на ошибки узел, если его тэг - operation
     {
         if (node.toElement().attributeNode("type").isNull()) throw 13;// Сообщить об ошибке, если узел операции не имееет типа
         QString type = node.toElement().attributeNode("type").value();

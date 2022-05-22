@@ -72,18 +72,31 @@ void Test_makeConjunctiveDisjunctiveForm::treeComparison(const QDomNode &firstTr
 
 void Test_makeConjunctiveDisjunctiveForm::emptyTree()
 {
+
     QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test1_source.xml");
-    makeConjunctiveDisjunctiveForm(source);
     QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test1_etalon.xml");
-    treeComparison(source, etalon);
+    try
+    {
+        makeConjunctiveDisjunctiveForm(source);
+    }
+    catch(int error)
+    {
+            treeComparison(source, etalon);
+    }
 }
 
 void Test_makeConjunctiveDisjunctiveForm::onlyExpressionTag()
 {
     QDomNode source = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test2_source.xml");
-    makeConjunctiveDisjunctiveForm(source);
     QDomNode etalon = getFirstNode("../../KNPO_deMorgan/Test_makeConjunctiveDisjunctiveForm/Tests/test2_etalon.xml");
-    treeComparison(source, etalon);
+    try
+    {
+        makeConjunctiveDisjunctiveForm(source);
+    }
+    catch (int error)
+    {
+        treeComparison(source, etalon);
+    }
 }
 
 void Test_makeConjunctiveDisjunctiveForm::onlyOneConjunction()
