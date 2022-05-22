@@ -239,6 +239,7 @@ int errorHandler(int errorCode)
     errors[14] = "The operation tag is of an invalid type.";
     errors[15] = "";
     errors[16] = "Lack of command line arguments.";
+    errors[17] = "The text node is not a child node of the variable";
 
     std::cout<<errors[errorCode].toStdString()<<std::endl; // Вывести сообщение в зависимости от полученного кода ошибки.
     return errorCode;     // Завершить функцию с полученным кодом ошибки.
@@ -255,6 +256,7 @@ void isCorrectNode(const QDomNode &node)
         if (node.childNodes().length() > 1) throw 6; // Сообщить об ошибке, если в узле expression более одного дочернего узла
         if (!node.parentNode().isNull()) throw 7; // Сообщить об ошибке, если узел  expression не является корневым
         if (node.toElement().elementsByTagName("expression").length() > 0) throw 8; //Сообщить об ошибке, если присутсвует более двух деревьев разбора
+        if (node.firstChild().isText()) throw 17; // Сообщить об ошибке, если дочерним узлов является текст
     }
 
     else if (tagName == "operation") // Проверить на ошибки узел, если его тэг - operation
@@ -267,6 +269,7 @@ void isCorrectNode(const QDomNode &node)
         {
             if (node.childNodes().length() < 2) throw 10; // Сообщить об ошибке, если бинарная операция имеет недостаток операндов
             if (node.childNodes().length() > 2) throw 9; // Сообщить об ошибке, если бинарная операция имеет более двух операндов
+            if (node.firstChild().isText() || node.lastChild().isText()) throw 17; // Сообщить об ошибке, если дочерним узлов является текст
         }
 
         // Проверить на уошибк узел отрицания
@@ -274,6 +277,7 @@ void isCorrectNode(const QDomNode &node)
         {
             if (node.childNodes().length() > 1) throw 7; // Сообщить об ошибке, если узел отрицания содержит более одного дочернего узла
             if (node.childNodes().length() < 1) throw 11; // Сообщить об ошибке, если узел отрицания не содержит дочерних узлов
+            if (node.firstChild().isText()) throw 17; // Сообщить об ошибке, если дочерним узлов является текст
         }
         else throw 14; // Иначе сообщить, что перация имеет неизвестный тип.
     }
