@@ -1,6 +1,17 @@
+/*!
+ * \file
+ * \brief The source code file .cpp with the implementation of the main function.
+ *
+*/
 #include <QCoreApplication>
 #include "main.h"
 
+/*!
+ * \brief main - the main function of program.
+ * \param argc[in] - number of arguments.
+ * \param argv[in] - arguments of command line.
+ * \return error code, 0 if there are no errors.
+ */
 int main(int argc, char *argv[])
 {
     try
