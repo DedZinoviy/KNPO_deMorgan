@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Header file with description of FileWork class with it's methods.
+ *
+*/
 #ifndef FILEWORK_H
 #define FILEWORK_H
 #include <QDomDocument>
@@ -46,6 +51,7 @@ public:
      * \brief isXMLFile сhecks whether the specified file is an XML file.
      * \param name - file name with its path.
      * \return success of operation.
+     * \throw 3 - Unsupported format. The file is not an .xml file.
      */
     bool isXMLFile(QString &name);
 
@@ -53,6 +59,7 @@ public:
      * \brief isCorrectOutput checks the output file name for correctness.
      * \param name - file name with its path.
      * \return success of operation.
+     * \throw 2 - Invalid output file specified. The specified location may not exist or may not have write permissions.
      */
     bool isCorrectOutput(QString & name);
 
@@ -60,6 +67,8 @@ public:
      * \brief isCorrectInput checks the input file name for correctness.
      * \param name - file name with its path.
      * \return success of operation.
+     * \throw 1 - Invalid input file specified. The file may not exist.
+     * \throw 15 - <Different syntax errors from file.>
      */
     bool isCorrectInput(QString & name);
 private:
