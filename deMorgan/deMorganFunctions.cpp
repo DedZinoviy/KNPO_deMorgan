@@ -1,5 +1,9 @@
+/*!
+ * \file
+ * \brief The source code file .cpp with the implementation of functions that solve the main problem.
+ *
+*/
 #include "main.h"
-
 
 QDomNode makeDeMorganExpressionOfNegations(QDomNode &firstChild, QDomNode &secondChild, DeMorganLaws type)
 {
