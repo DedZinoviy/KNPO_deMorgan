@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief The source code file .cpp with the implementation of the FileWork class.
+ *
+*/
 #include "filework.h"
 
 FileWork::FileWork()
